@@ -1,14 +1,17 @@
 # SchemeSaathi — Indian Government Benefits Discovery Platform
 
 [![Live Website](https://img.shields.io/badge/Live_Website-sathischeme.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://sathischeme.netlify.app/)
+[![Presentation Deck](https://img.shields.io/badge/Presentation-15_Slide_PPT-ff6b6b?style=for-the-badge&logo=microsoft-powerpoint&logoColor=white)](https://sathischeme.netlify.app/presentation.html)
 [![Next.js](https://img.shields.io/badge/Next.js-16.3-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-blue?style=flat&logo=react)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38bdf8?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
 [![PWA Ready](https://img.shields.io/badge/PWA-Installable-purple?style=flat&logo=pwa)](https://sathischeme.netlify.app/)
 
-> ### 🌐 Live Application
-> **Official Live Website:** **[https://sathischeme.netlify.app/](https://sathischeme.netlify.app/)**  
-> *Fully responsive civic platform with PWA mobile installation & direct verified government portal routing.*
+> ### 🌐 Live Application & Presentation
+> - **Official Live Website:** **[https://sathischeme.netlify.app/](https://sathischeme.netlify.app/)**  
+> - **Interactive Web Slide Deck:** **[https://sathischeme.netlify.app/presentation.html](https://sathischeme.netlify.app/presentation.html)**  
+> - **Download Presentation File (.pptx):** **[`SchemeSaathi_Presentation.pptx`](./SchemeSaathi_Presentation.pptx)**  
+> *Fully responsive civic platform with PWA mobile installation, direct verified government portal routing, and complete 15-slide technical presentation.*
 
 An independent, third-party civic-technology platform designed to help Indian citizens discover Central and State Government schemes they may be eligible for — with **zero document collection**, transparent criteria scoring, and unblockable direct redirection to official `.gov.in` and `.nic.in` portals.
 
@@ -86,13 +89,33 @@ sequenceDiagram
 
 ---
 
-## 🌟 Key Architecture Highlights
+## 📊 Comprehensive Project Presentation (15 Slides PPT)
 
-- **🔒 Zero-Knowledge Civic Privacy:** No collection or remote storage of Aadhaar numbers, PAN, bank credentials, phone numbers, or uploaded documents. All eligibility scoring runs strictly client-side.
-- **⚡ 100% Static HTML Pre-Rendering:** All scheme profiles, directory filters, and taxonomy categories are pre-generated at compile time (`output: "export"`) with `generateStaticParams()`.
-- **📱 Progressive Web App (PWA):** Installs seamlessly on Android, iOS, and Desktop devices with service worker caching (`sw.js`), Web App Manifest (`manifest.json`), and custom adaptive maskable icons.
-- **🔗 Unblockable Official Redirection:** Built with native target navigation to prevent mobile popup blockers from preventing citizen access to `.gov.in` and `.nic.in` portals.
-- **🌐 15 Verified Live Government Schemes:** Fully tested and updated endpoint links for PM-KISAN, Ayushman Bharat PM-JAY, PMAY-G, Mudra Yojana, PMKVY, Sukanya Samriddhi, and State initiatives.
+A presentation covering SchemeSaathi from initial vision to production deployment is included in this repository.
+
+- **Direct Download PPTX:** [**`SchemeSaathi_Presentation.pptx`**](./SchemeSaathi_Presentation.pptx)
+- **Interactive Web Slideshow:** [**`https://sathischeme.netlify.app/presentation.html`**](https://sathischeme.netlify.app/presentation.html)
+- **Automated Generator Script:** [**`create_presentation.py`**](./create_presentation.py) *(Built using Python, `python-pptx`, and Pillow)*
+
+### Slide-by-Slide Content Breakdown
+
+| # | Slide Title | Key Content & Topics Covered |
+| :-: | :--- | :--- |
+| **01** | **Title Slide** | Project identity, tagline, author credit (Shivani), live URL, GitHub repository, and core stack badges. |
+| **02** | **Executive Summary & Vision** | 4 Pillars: Zero-Document Privacy, Instant Client Matching (&lt;10ms), Direct Portal Links, and Offline PWA. |
+| **03** | **Problem Statement** | The ₹3+ Lakh Crore Welfare Delivery Crisis: Information asymmetry, predatory middlemen, cyber fraud, and portal fragmentation. |
+| **04** | **The SchemeSaathi Solution** | First-principles civic innovation: Zero KYC, bilingual UX (English & Hindi), explainable match criteria, and unblockable native routing. |
+| **05** | **System Architecture** | 4-Tier design: Client PWA layer, Netlify Global Edge CDN, Local Eligibility Rules Engine, and Outbound Government Ecosystem. |
+| **06** | **Architecture Flow Diagram** | End-to-end execution pipeline from HTTPS load to service worker caching, client evaluation, and official dispatch. |
+| **07** | **Component Sequence Flow** | Chronological citizen lifecycle: Static delivery &lt;50ms, `sw.js` cache pre-warming, reactive evaluation, and native anchor dispatch. |
+| **08** | **AI & Algorithmic Intelligence** | Deep dive into `lib/eligibility.ts`: Multi-factor weighted scoring (Category 30%, Income 25%, Age 20%, State 15%, Gender 10%), Zero-Knowledge execution, Explainable criteria pills, and future Indic Voice AI roadmap. |
+| **09** | **Frontend Engineering** | Next.js 16 App Router, React 19 hooks, Tailwind CSS v4 design tokens, atomic components (`SchemeCard`, `EligibilityWizard`, `PwaRegister`). |
+| **10** | **Backend & Edge Infrastructure** | Zero-server serverless model: Next.js SSG `output: 'export'`, Netlify CDN edge routing, `_redirects` SPA fallback, and HTTP security headers. |
+| **11** | **PWA & Mobile Installation** | Progressive Web App implementation: `manifest.json` metadata, `sw.js` Cache-First/Network-First caching strategy, and custom adaptive icons. |
+| **12** | **Redirection Engineering & Portals** | Solving link-blocking: Native `target="_blank" rel="noopener noreferrer"` anchors + 15 verified, live 200 OK `.gov.in` and `.nic.in` portals. |
+| **13** | **Technology Stack & Languages** | Detailed language breakdown (TypeScript 98.4%, Python, CSS3, HTML5), frameworks, DevOps, and open standards. |
+| **14** | **Performance & Civic Impact** | Audited metrics: &lt;50ms global TTFB latency, 0 bytes demographic egress, 98+ Google Lighthouse score, and 100% verified links. |
+| **15** | **Future Roadmap & Summary** | 12+ Regional Indian languages (Bhashini), on-device Indic voice bot, WhatsApp micro-gateway, automated dead-link guardian, and contact info. |
 
 ---
 

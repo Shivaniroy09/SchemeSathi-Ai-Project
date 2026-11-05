@@ -207,6 +207,25 @@ export default function Footer() {
                   {t("nav.reportIssue")}
                 </Link>
               </li>
+              <li className="pt-1 border-t border-navy-light/60">
+                <a
+                  href="/presentation.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-sky-300 hover:text-white font-medium transition-colors"
+                >
+                  <span>📊 Project Presentation Deck</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/SchemeSaathi_Presentation.pptx"
+                  download
+                  className="inline-flex items-center gap-1.5 text-xs text-sky-400 hover:text-white transition-colors"
+                >
+                  <span>📥 Download Slide Deck (.pptx)</span>
+                </a>
+              </li>
             </ul>
           </div>
 

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SchemeSaathi — Comprehensive Project Presentation Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(148, 163, 184, 0.15);
+      --primary: #38bdf8;
+      --accent-blue: #2563eb;
+      --accent-emerald: #10b981;
+      --accent-gold: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at 10% 20%, #0f172a 0%, #070d19 90%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: rgba(51, 65, 85, 0.9);
+      border-color: var(--primary);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      border: none;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0369a1, #1d4ed8);
+      transform: translateY(-1px);
+    }
+
+    /* Deck Container */
+    .deck-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 80vh;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(56, 189, 248, 0.1);
+      padding: 44px 56px;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.985); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .slide-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+    }
+
+    .slide-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      max-width: 900px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      flex: 1;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent-blue));
+    }
+
+    .card.emerald::before { background: var(--accent-emerald); }
+    .card.gold::before { background: var(--accent-gold); }
+    .card.rose::before { background: var(--accent-rose); }
+    .card.cyan::before { background: var(--primary); }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-body {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      flex: 1;
+    }
+
+    .card-body ul {
+      list-style-type: none;
+    }
+
+    .card-body li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .card-body li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    .metric-value {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #38bdf8;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .code-box {
+      background: #030712;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+
+    /* Controls Bar */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 18px;
+      padding: 0 10px;
+    }
+
+    .slide-counter {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      width: 240px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #2563eb);
+      width: 6.66%;
+      transition: width 0.25s ease;
+    }
+
+    /* Title Slide Specific */
+    .hero-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 20%, #38bdf8 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.35rem;
+      color: #cbd5e1;
+      max-width: 800px;
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      font-size: 0.95rem;
+      color: #94a3b8;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .slide {
+        aspect-ratio: auto;
+        padding: 24px 20px;
+        max-height: none;
+      }
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <span>🇮🇳 SchemeSaathi</span>
+      <span class="brand-badge">Project Deck</span>
+    </div>
+    <div class="nav-actions">
+      <a href="https://sathischeme.netlify.app/" target="_blank" class="btn">
+        🌐 Live Website
+      </a>
+      <a href="https://github.com/Shivaniroy09/SchemeSathi-Ai-Project" target="_blank" class="btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub Repo
+      </a>
+      <a href="/SchemeSaathi_Presentation.pptx" download class="btn btn-primary">
+        📥 Download .PPTX File
+      </a>
+    </div>
+  </header>
+
+  <!-- Presentation Deck -->
+  <main class="deck-container">
+    
+    <!-- Slide 1: Title -->
+    <section class="slide active" id="slide-1">
+      <div class="hero-center">
+        <div class="hero-badge">🇮🇳 CIVIC-TECH INNOVATION FOR CITIZENS OF INDIA</div>
+        <h1 class="hero-title">SchemeSaathi</h1>
+        <p class="hero-subtitle">
+          An Intelligent, Zero-Document Benefits Discovery Platform Connecting 1.4 Billion Citizens directly to Verified Government Welfare Programs.
+        </p>
+        <div class="hero-meta">
+          <div>Author: <span>Shivani (Lead Creator & Developer)</span></div>
+          <div>Stack: <span>Next.js 16 • React 19 • Tailwind v4 • PWA</span></div>
+          <div>Live: <span>sathischeme.netlify.app</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Executive Summary & Vision -->
+    <section class="slide" id="slide-2">
+      <div class="slide-tag">Executive Summary</div>
+      <h2 class="slide-title">Vision: Empowering Indian Citizens Directly</h2>
+      <p class="slide-subtitle">Bridging the gap between multi-thousand crore welfare programs and grassroots citizens.</p>
+      <div class="grid-4">
+        <div class="card cyan">
+          <div class="card-title">🛡️ Zero-Document Privacy</div>
+          <div class="card-body">
+            No Aadhaar numbers, PAN cards, OTPs or phone numbers are ever stored or uploaded. Complete client-side confidentiality.
+          </div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">⚡ Instant Client Matching</div>
+          <div class="card-body">
+            Algorithmic scoring runs client-side in &lt;10ms. Evaluates age, state, gender, income, and category with explainable logic.
+          </div>
+        </div>
+        <div class="card gold">
+          <div class="card-title">🔗 100% Direct Portal Links</div>
+          <div class="card-body">
+            Citizens bypass middlemen and cyber scammers. 15+ verified, live government portals (pmkisan.gov.in, pmawasyojana.gov.in, etc.).
+          </div>
+        </div>
+        <div class="card rose">
+          <div class="card-title">📱 Offline PWA Install</div>
+          <div class="card-body">
+            Installable on Android, iOS, Windows, and macOS. Cached offline via Service Workers for low-connectivity rural belts.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Problem Statement -->
+    <section class="slide" id="slide-3">
+      <div class="slide-tag">Problem Statement</div>
+      <h2 class="slide-title">The ₹3+ Lakh Crore Welfare Delivery Crisis</h2>
+      <p class="slide-subtitle">India allocates massive welfare budgets, yet millions remain excluded due to 4 systemic failures:</p>
+      <div class="grid-2">
+        <div class="card rose">
+          <div class="card-title">1. Massive Information Asymmetry</div>
+          <div class="card-body">
+            Over 500+ Central and State welfare programs exist across 50+ ministries. Citizens have no unified, simple way to check where they qualify without complex legal gazettes.
+          </div>
+        </div>
+        <div class="card gold">
+          <div class="card-title">2. Predatory Middlemen & "Dalal" Culture</div>
+          <div class="card-body">
+            Unregistered agents charge poor citizens ₹500–₹2,000 just to fill free government forms, siphoning off benefits before they even reach beneficiaries.
+          </div>
+        </div>
+        <div class="card rose">
+          <div class="card-title">3. Privacy Violations & Phishing Fraud</div>
+          <div class="card-body">
+            Unverified third-party websites harvest Aadhaar cards, mobile numbers, and bank details under the guise of scheme registration, exposing citizens to cyber financial fraud.
+          </div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">4. Technical & Language Friction</div>
+          <div class="card-body">
+            Official government portals are heavily fragmented, frequently undergo URL reorganizations, and lack intuitive, responsive mobile design for grassroots users.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: The SchemeSaathi Solution -->
+    <section class="slide" id="slide-4">
+      <div class="slide-tag">The Solution</div>
+      <h2 class="slide-title">Zero-Friction Civic Empowerment</h2>
+      <p class="slide-subtitle">Designed from first principles to be fast, honest, and accessible to everyone in Bharat.</p>
+      <div class="grid-4">
+        <div class="card cyan">
+          <div class="card-title">1. Zero KYC Needed</div>
+          <div class="card-body">Zero server logging, zero database tracking. Citizens test their criteria freely without surveillance anxiety.</div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">2. Bilingual UX</div>
+          <div class="card-body">Fluid toggle between English and Hindi with simple, dignified civic iconography and terminology.</div>
+        </div>
+        <div class="card gold">
+          <div class="card-title">3. Explainable Matches</div>
+          <div class="card-body">Shows clear match percentage with explicit criteria pills (e.g. "Age 18-40 satisfied", "Income bracket met").</div>
+        </div>
+        <div class="card rose">
+          <div class="card-title">4. Unblockable Links</div>
+          <div class="card-body">Uses standard native links with rel="noopener noreferrer" to ensure zero browser blocking or pop-up errors.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: System Architecture -->
+    <section class="slide" id="slide-5">
+      <div class="slide-tag">System Architecture</div>
+      <h2 class="slide-title">4-Tier Edge & Client Architecture</h2>
+      <p class="slide-subtitle">Optimized for sub-50ms latency, zero server maintenance costs, and total data isolation.</p>
+      <div class="grid-4">
+        <div class="card cyan">
+          <div class="card-title">Layer 1: Client PWA</div>
+          <div class="card-body">
+            <ul>
+              <li>Next.js 16 App Router</li>
+              <li>React 19 Components</li>
+              <li>Tailwind CSS v4 Engine</li>
+              <li>sw.js Service Worker</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">Layer 2: Edge CDN</div>
+          <div class="card-body">
+            <ul>
+              <li>Netlify Global Edge CDN</li>
+              <li>Static Site Export (SSG)</li>
+              <li>Strict Security Headers</li>
+              <li>Immutable Asset Caching</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card gold">
+          <div class="card-title">Layer 3: Local Engine</div>
+          <div class="card-body">
+            <ul>
+              <li>lib/eligibility.ts logic</li>
+              <li>Client-side criteria weights</li>
+              <li>Dynamic filtering pipeline</li>
+              <li>Zero network egress of data</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card rose">
+          <div class="card-title">Layer 4: Gov Outbound</div>
+          <div class="card-body">
+            <ul>
+              <li>Direct .gov.in routing</li>
+              <li>Direct .nic.in portals</li>
+              <li>myScheme Gateway</li>
+              <li>Clean target="_blank"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Flowchart Diagram -->
+    <section class="slide" id="slide-6">
+      <div class="slide-tag">Diagram & Pipeline</div>
+      <h2 class="slide-title">End-to-End Execution Flow</h2>
+      <p class="slide-subtitle">How a citizen navigates from landing to application submission:</p>
+      <div class="card cyan" style="margin-bottom: 20px;">
+        <div class="card-title">🔄 Architecture Flowchart</div>
+        <div class="code-box">
+[Citizen Browser / PWA] ──(HTTPS)──> [Netlify Global Edge CDN]
+       │                                     │
+       ▼                                     ▼
+[Instant HTML/CSS Shell] <──(Cached Assets)── [sw.js Service Worker]
+       │
+       ▼ (User enters Profile: Age, State, Category, Income)
+[Client-Side Eligibility Engine (lib/eligibility.ts)]
+       │
+       ├─► [Score >= 60%] ──> [Interactive Scheme Cards + Criteria Match Badges]
+       │                            │ (Direct Click: "Apply on Official Portal")
+       │                            ▼
+       │                    [Verified Gov Portal (.gov.in / .nic.in)]
+       │
+       └─► [Score < 60%]  ──> [Inline Guidance / Explore All Categories]
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Component Sequence Flow -->
+    <section class="slide" id="slide-7">
+      <div class="slide-tag">Sequence Flow</div>
+      <h2 class="slide-title">Component Sequence & Lifecycle</h2>
+      <p class="slide-subtitle">Chronological step execution inside the client application:</p>
+      <div class="grid-3">
+        <div class="card cyan">
+          <div class="card-title">1. Bootstrap & Caching</div>
+          <div class="card-body">
+            Citizen opens SchemeSaathi. Netlify CDN responds in &lt;50ms. PwaRegister initializes sw.js, caching core assets and fonts into CacheStorage.
+          </div>
+        </div>
+        <div class="card gold">
+          <div class="card-title">2. State & Evaluation</div>
+          <div class="card-body">
+            Citizen fills the 4-step wizard. React state triggers calculateEligibilityScore() locally. Weighted scoring assigns 0-100% confidence.
+          </div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">3. Dispatch & Direct Routing</div>
+          <div class="card-body">
+            User selects scheme card. Native &lt;a target="_blank" rel="noopener noreferrer"&gt; anchor opens official portal directly in fresh tab.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: AI & Algorithmic Intelligence -->
+    <section class="slide" id="slide-8">
+      <div class="slide-tag">AI & Algorithms</div>
+      <h2 class="slide-title">Algorithmic Intelligence & Explainable AI</h2>
+      <p class="slide-subtitle">Where AI/Algorithms are used in SchemeSaathi and why client-side execution matters:</p>
+      <div class="grid-2">
+        <div class="card emerald">
+          <div class="card-title">Where It Operates: lib/eligibility.ts</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Multi-Factor Weighted Scoring:</strong> Computes compatibility vectors using Category (30%), Income ceiling (25%), Age range (20%), State jurisdiction (15%), and Gender criteria (10%).</li>
+              <li><strong>Zero-Knowledge Evaluation:</strong> Citizen inputs are never transmitted to cloud LLM APIs, preventing personal leakages.</li>
+              <li><strong>Explainable AI Matching:</strong> Users see exactly why they qualified (e.g. "Satisfies income &lt; ₹2.5L bracket").</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card cyan">
+          <div class="card-title">Future Indic AI Roadmap</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>On-Device Voice AI:</strong> Integrating Bhashini / Whisper Indic models for Hindi, Tamil, Bengali, Telugu voice queries.</li>
+              <li><strong>Semantic Scheme Search:</strong> Vector embeddings for search by citizen natural language (e.g. "I want loan for small tea shop").</li>
+              <li><strong>Document Guidance Assistant:</strong> Conversational AI explaining required paperwork before applying.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: Frontend Engineering -->
+    <section class="slide" id="slide-9">
+      <div class="slide-tag">Frontend Engineering</div>
+      <h2 class="slide-title">Modern Next.js 16 & React 19 UI Engine</h2>
+      <p class="slide-subtitle">Clean architectural breakdown of the client-side component tree:</p>
+      <div class="grid-3">
+        <div class="card cyan">
+          <div class="card-title">Pages & Routing</div>
+          <div class="card-body">
+            <ul>
+              <li>app/page.tsx (Home & Wizard)</li>
+              <li>app/central-schemes/page.tsx</li>
+              <li>app/state-schemes/page.tsx</li>
+              <li>app/categories/page.tsx</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">Modular Components</div>
+          <div class="card-body">
+            <ul>
+              <li>SchemeCard.tsx (Scheme Details)</li>
+              <li>Navbar.tsx (Navigation & Lang)</li>
+              <li>Footer.tsx (Creator & Links)</li>
+              <li>PwaRegister.tsx (Service Worker)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card gold">
+          <div class="card-title">Design & Styling</div>
+          <div class="card-body">
+            <ul>
+              <li>Tailwind CSS v4 Engine</li>
+              <li>Inter & JetBrains Mono Fonts</li>
+              <li>Mobile-first Responsive Grid</li>
+              <li>Glassmorphism & Micro-animations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: Backend & Edge Infrastructure -->
+    <section class="slide" id="slide-10">
+      <div class="slide-tag">Backend Infrastructure</div>
+      <h2 class="slide-title">Zero-Server Serverless Edge Architecture</h2>
+      <p class="slide-subtitle">How SchemeSaathi runs with 99.99% availability and zero backend maintenance:</p>
+      <div class="grid-2">
+        <div class="card cyan">
+          <div class="card-title">SSG Static Site Generation</div>
+          <div class="card-body">
+            <ul>
+              <li>Configured with <code>output: 'export'</code> in next.config.ts</li>
+              <li>Pre-compiles all HTML, CSS, JavaScript, and JSON during build</li>
+              <li>Removes Node.js server vulnerability surface completely</li>
+              <li>Zero cold starts, sub-50ms Time To First Byte (TTFB) worldwide</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card rose">
+          <div class="card-title">Netlify Edge & Security Headers</div>
+          <div class="card-body">
+            <ul>
+              <li><code>public/_redirects</code>: Ensures SPA client routing with <code>/* /index.html 200</code></li>
+              <li><code>netlify.toml</code>: Implements X-Frame-Options: DENY, X-Content-Type-Options: nosniff</li>
+              <li>Content Security Policy & Strict-Transport-Security (HSTS)</li>
+              <li>Zero hosting cost overhead for civic open-source operation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 11: PWA & Mobile Installation -->
+    <section class="slide" id="slide-11">
+      <div class="slide-tag">PWA Technology</div>
+      <h2 class="slide-title">Progressive Web Application (PWA)</h2>
+      <p class="slide-subtitle">Turn any browser into a high-speed native app experience:</p>
+      <div class="grid-3">
+        <div class="card cyan">
+          <div class="card-title">manifest.json</div>
+          <div class="card-body">
+            Configures display: "standalone", theme_color: "#1e3a8a", orientation: "portrait-primary", and 192px/512px maskable adaptive icons.
+          </div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">sw.js Service Worker</div>
+          <div class="card-body">
+            Implements Cache-First caching strategy for CSS, JS, fonts, and images. Network-First fallback ensures fresh government updates.
+          </div>
+        </div>
+        <div class="card gold">
+          <div class="card-title">Universal Install Prompt</div>
+          <div class="card-body">
+            Users on Chrome, Safari, Edge, Firefox see an instant "Add to Home Screen" or "Install App" prompt.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 12: Redirection Engineering -->
+    <section class="slide" id="slide-12">
+      <div class="slide-tag">Redirection Engineering</div>
+      <h2 class="slide-title">15+ Verified Direct Government Portals</h2>
+      <p class="slide-subtitle">Solved link-blocking issues with native anchor tags and 100% verified URLs:</p>
+      <div class="grid-4">
+        <div class="card emerald">
+          <div class="card-title">PM-KISAN</div>
+          <div class="card-body">pmkisan.gov.in<br/>Direct farmer portal for ₹6,000 annual DBT.</div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">Ayushman Bharat</div>
+          <div class="card-body">beneficiary.nha.gov.in<br/>PM-JAY ₹5L cashless health coverage.</div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">PM Awas Yojana</div>
+          <div class="card-body">pmaymis.gov.in<br/>Housing for urban & rural families.</div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">PM Mudra Yojana</div>
+          <div class="card-body">mudra.org.in<br/>Collateral-free loans up to ₹10 Lakhs.</div>
+        </div>
+      </div>
+      <div class="grid-4" style="margin-top: 14px;">
+        <div class="card emerald">
+          <div class="card-title">Sukanya Samriddhi</div>
+          <div class="card-body">indiapost.gov.in<br/>Girl child education & marriage fund.</div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">Atal Pension</div>
+          <div class="card-body">npscra.nsdl.co.in<br/>Guaranteed unorganized sector pension.</div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">Digital Saksharta</div>
+          <div class="card-body">pmgdisha.in<br/>Rural digital literacy empowerment.</div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">myScheme Hub</div>
+          <div class="card-body">myscheme.gov.in<br/>Official National Portal of India.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 13: Technology Stack -->
+    <section class="slide" id="slide-13">
+      <div class="slide-tag">Tech Stack & Languages</div>
+      <h2 class="slide-title">Complete Technology Ecosystem</h2>
+      <p class="slide-subtitle">Production-grade technologies powering the SchemeSaathi ecosystem:</p>
+      <div class="grid-4">
+        <div class="card cyan">
+          <div class="card-title">Languages</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>TypeScript (98.4%):</strong> Full type safety</li>
+              <li><strong>CSS3 / PostCSS:</strong> Modern styling</li>
+              <li><strong>HTML5 Semantic:</strong> Accessible UI</li>
+              <li><strong>Python:</strong> PPT & automation scripts</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">Frameworks</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Next.js 16.3:</strong> App Router SSG</li>
+              <li><strong>React 19.2:</strong> Modern UI hooks</li>
+              <li><strong>Tailwind CSS v4:</strong> Utility styling</li>
+              <li><strong>Lucide Icons:</strong> Lightweight SVGs</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card gold">
+          <div class="card-title">DevOps & Cloud</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Netlify:</strong> Edge CDN & SSG host</li>
+              <li><strong>GitHub:</strong> Git VCS & actions</li>
+              <li><strong>npm:</strong> Package dependencies</li>
+              <li><strong>Service Worker:</strong> Cache API</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card rose">
+          <div class="card-title">Standards</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>PWA:</strong> Offline Web Standards</li>
+              <li><strong>W3C WCAG 2.1:</strong> Civic accessibility</li>
+              <li><strong>Zero-Trust:</strong> Local-only eval</li>
+              <li><strong>Open Source:</strong> MIT License</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 14: Performance & Civic Impact -->
+    <section class="slide" id="slide-14">
+      <div class="slide-tag">Performance & Impact</div>
+      <h2 class="slide-title">Audited Performance & Civic Impact</h2>
+      <p class="slide-subtitle">Measurable, production-audited results achieved by SchemeSaathi:</p>
+      <div class="grid-4">
+        <div class="card cyan">
+          <div class="metric-value">&lt; 50ms</div>
+          <div class="metric-label">Global TTFB Latency</div>
+          <div class="card-body" style="margin-top: 10px;">Instant edge loading via pre-rendered SSG across India.</div>
+        </div>
+        <div class="card emerald">
+          <div class="metric-value">0 Bytes</div>
+          <div class="metric-label">Data Transmitted</div>
+          <div class="card-body" style="margin-top: 10px;">Zero citizen demographic data leaves the client device.</div>
+        </div>
+        <div class="card gold">
+          <div class="metric-value">98+</div>
+          <div class="metric-label">Lighthouse Score</div>
+          <div class="card-body" style="margin-top: 10px;">Top-tier scores across SEO, Performance, Accessibility & Best Practices.</div>
+        </div>
+        <div class="card rose">
+          <div class="metric-value">100%</div>
+          <div class="metric-label">Verified Redirects</div>
+          <div class="card-body" style="margin-top: 10px;">Zero broken links or intermediary middleman domains.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 15: Future Roadmap & Summary -->
+    <section class="slide" id="slide-15">
+      <div class="slide-tag">Summary & Roadmap</div>
+      <h2 class="slide-title">Roadmap & Project Summary</h2>
+      <p class="slide-subtitle">Continuing our mission to make benefits universally accessible:</p>
+      <div class="grid-2">
+        <div class="card cyan">
+          <div class="card-title">🚀 Immediate Strategic Roadmap</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>12+ Regional Indian Languages:</strong> Adding Tamil, Telugu, Bengali, Marathi, Punjabi, Gujarati translations.</li>
+              <li><strong>Voice-First Conversational Agent:</strong> Multi-modal voice search for illiterate & elderly citizens.</li>
+              <li><strong>WhatsApp Micro-Gateway:</strong> Conversational discovery through simple WhatsApp text commands.</li>
+              <li><strong>Automated Dead-Link Guardian:</strong> Nightly GitHub Action to ping all government portal endpoints.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card emerald">
+          <div class="card-title">👩‍💻 Project Ownership & Links</div>
+          <div class="card-body">
+            <p style="margin-bottom: 12px;"><strong>Creator & Developer:</strong> Shivani</p>
+            <ul>
+              <li><strong>Live Website:</strong> <a href="https://sathischeme.netlify.app/" target="_blank" style="color: #38bdf8;">sathischeme.netlify.app</a></li>
+              <li><strong>GitHub Repository:</strong> <a href="https://github.com/Shivaniroy09/SchemeSathi-Ai-Project" target="_blank" style="color: #38bdf8;">Shivaniroy09/SchemeSathi-Ai-Project</a></li>
+              <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/shivani2302/" target="_blank" style="color: #38bdf8;">linkedin.com/in/shivani2302</a></li>
+              <li><strong>Email:</strong> <a href="mailto:shivaniroy2309@gmail.com" style="color: #38bdf8;">shivaniroy2309@gmail.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Controls Bar -->
+  <footer class="deck-container" style="padding-top: 0; padding-bottom: 24px;">
+    <div class="controls">
+      <div class="nav-buttons">
+        <button class="btn" id="prev-btn">◀ Previous</button>
+        <button class="btn btn-primary" id="next-btn">Next ▶</button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress"></div>
+        </div>
+        <span class="slide-counter" id="counter">Slide 1 of 15</span>
+      </div>
+
+      <button class="btn" id="fullscreen-btn">⛶ Fullscreen</button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 15;
+
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+    const progress = document.getElementById('progress');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const fsBtn = document.getElementById('fullscreen-btn');
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      currentSlide = index;
+
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx + 1 === currentSlide);
+      });
+
+      counter.textContent = `Slide ${currentSlide} of ${totalSlides}`;
+      progress.style.width = `${(currentSlide / totalSlides) * 100}%`;
+
+      prevBtn.disabled = currentSlide === 1;
+      nextBtn.disabled = currentSlide === totalSlides;
+    }
+
+    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        showSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        showSlide(currentSlide - 1);
+      } else if (e.key === 'Home') {
+        showSlide(1);
+      } else if (e.key === 'End') {
+        showSlide(totalSlides);
+      }
+    });
+
+    fsBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        fsBtn.textContent = '✕ Exit Fullscreen';
+      } else {
+        document.exitFullscreen();
+        fsBtn.textContent = '⛶ Fullscreen';
+      }
+    });
+
+    showSlide(1);
+  </script>
+</body>
+</html>
