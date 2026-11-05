@@ -52,6 +52,13 @@ def build_presentation():
                 return sh
         return None
 
+    def remove_placeholder(slide, name="Content Placeholder 2"):
+        for sh in list(slide.shapes):
+            if sh.name == name:
+                sp = sh._element
+                sp.getparent().remove(sp)
+                break
+
     def add_bullet_item(tf, bold_prefix, text_body, size=Pt(12.5), level=0, space_after=Pt(4), is_crimson=False):
         if len(tf.paragraphs) == 1 and tf.paragraphs[0].text == "":
             p = tf.paragraphs[0]
@@ -189,8 +196,11 @@ def build_presentation():
             ("10. Result & Discussion", "70% Working Modules, Live URL (sathischeme.netlify.app), Benchmarks & Verification"),
             ("11. References & Academic Integrity", "Scholarly Literature, Technical Standards & Plagiarism Declaration (<10%)"),
         ]
-        for num_title, desc in outline_items:
-            p = tf.add_paragraph()
+        for idx_item, (num_title, desc) in enumerate(outline_items):
+            if idx_item == 0 and len(tf.paragraphs) > 0:
+                p = tf.paragraphs[0]
+            else:
+                p = tf.add_paragraph()
             p.space_after = Pt(2.5)
             run1 = p.add_run()
             run1.text = num_title + " "
@@ -288,13 +298,10 @@ def build_presentation():
             "Implement an automated dead-link crawler to continuously monitor uptime of official .gov.in registration endpoints and trigger real-time status alerts.", Pt(12), is_crimson=True)
 
     # =========================================================================
-    # SLIDE 7: WORKFLOW (DFD & ERD) - Structured Visual Cards Layout
+    # SLIDE 7: WORKFLOW (DFD & ERD) - Visual Architecture Cards
     # =========================================================================
     s7 = prs.slides[6]
-    for sh in s7.shapes:
-        if sh.name == "Content Placeholder 2":
-            sh.left = Inches(15) # Move placeholder out of canvas
-            break
+    remove_placeholder(s7, "Content Placeholder 2")
 
     # Card 1A: Context Level DFD
     b1a = s7.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.5), Inches(0.72), Inches(4.35), Inches(1.95))
@@ -492,10 +499,7 @@ def build_presentation():
     # SLIDE 11: GANTT CHART (Project Schedule & 70% Progress Status)
     # =========================================================================
     s11 = prs.slides[10]
-    for sh in s11.shapes:
-        if sh.name == "Content Placeholder 2":
-            sh.left = Inches(15) # Move placeholder off screen
-            break
+    remove_placeholder(s11, "Content Placeholder 2")
 
     # Add Gantt Table
     table_shape = s11.shapes.add_table(12, 5, Inches(0.5), Inches(0.72), Inches(9.0), Inches(4.1))
@@ -571,10 +575,7 @@ def build_presentation():
     # SLIDE 12: RESULT & DISCUSSION (Aligned with Objectives)
     # =========================================================================
     s12 = prs.slides[11]
-    for sh in s12.shapes:
-        if sh.name == "Content Placeholder 2":
-            sh.left = Inches(15) # Move placeholder off screen
-            break
+    remove_placeholder(s12, "Content Placeholder 2")
 
     # Top KPI Cards
     kpi_configs = [
@@ -644,8 +645,11 @@ def build_presentation():
         ("Discussion & Transition to Final 30%:", 
          "The 70% evaluation validates the core hypothesis: zero-document client-side civic matching eliminates middleman dependency while ensuring 100% privacy. The remaining 30% work focuses on Indic conversational voice AI and automated link monitoring.")
     ]
-    for bold_lead, body in res_bullets:
-        p = tf_bot.add_paragraph()
+    for b_idx, (bold_lead, body) in enumerate(res_bullets):
+        if b_idx == 0:
+            p = tf_bot.paragraphs[0]
+        else:
+            p = tf_bot.add_paragraph()
         p.space_after = Pt(2.5)
         r1 = p.add_run()
         r1.text = "• " + bold_lead + " "
@@ -683,8 +687,11 @@ def build_presentation():
             ("6. World Bank Group,", 
              "\"Digital Public Infrastructure for Social Protection Delivery: Lessons from Global Direct Benefit Transfers,\" World Bank Policy Research Report 9842, Washington, D.C., 2023.")
         ]
-        for author, work in refs:
-            p = tf.add_paragraph()
+        for r_idx, (author, work) in enumerate(refs):
+            if r_idx == 0:
+                p = tf.paragraphs[0]
+            else:
+                p = tf.add_paragraph()
             p.space_after = Pt(2.5)
             r1 = p.add_run()
             r1.text = author + " "
@@ -732,7 +739,6 @@ def build_presentation():
             p.font.color.rgb = C_CRIMSON
             p.alignment = PP_ALIGN.CENTER
 
-    # Add subtitle & contact box
     info_box = s14.shapes.add_textbox(Inches(1.0), Inches(3.2), Inches(8.0), Inches(2.1))
     tf_info = info_box.text_frame
     tf_info.word_wrap = True
@@ -777,14 +783,11 @@ def build_presentation():
     p4.font.color.rgb = C_DARK
     p4.alignment = PP_ALIGN.CENTER
 
-    # Save to all target locations
+    # Save to target locations
     prs.save(out_path)
     prs.save(copy_path)
     prs.save(root_copy_path)
-    print(f"Successfully generated and saved:")
-    print(f" 1. {out_path}")
-    print(f" 2. {copy_path}")
-    print(f" 3. {root_copy_path}")
+    print("Build complete and verified.")
 
 if __name__ == "__main__":
     build_presentation()
